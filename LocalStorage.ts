@@ -31,7 +31,6 @@ export function LocalStorage(storageKey?:string) {
             }
         }
         var oldJSONValues = {};
-        console.log('init', storageValueJSON, storageValue);
 
         Object.defineProperty(target, decoratedPropertyName, {
             get: function () {
@@ -73,7 +72,6 @@ export function LocalStorage(storageKey?:string) {
                 if (currentValue !== oldJSONValue) {
                     storageValueJSON[this['_' + decoratedPropertyName + '_mapped']] = currentValue;
                     localStorage.setItem(storageKey, currentValue);
-                    console.log('LocalStorage changed', instances.length, instance[decoratedPropertyName]);
                 }
             }
         });

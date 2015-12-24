@@ -1,5 +1,5 @@
 {
-  "name": "angular2-localStorage",
+  "name": "angular2-localstorage",
   "version": "0.1.0",
   "description": "Angular2 decorator to save and restore class properties automatically from LocalStorage.",
   "main": "index.js",

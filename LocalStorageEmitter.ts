@@ -40,7 +40,6 @@ import {provide} from 'angular2/src/core/di';
 
 export function LocalStorageSubscriber(appPromise:Promise) {
     appPromise.then((bla) => {
-        console.log('app booted', bla);
-        console.log(bla.injector.resolveAndInstantiate(<Type>LocalStorageService));
+        bla.injector.resolveAndInstantiate(<Type>LocalStorageService);
     });
 }
