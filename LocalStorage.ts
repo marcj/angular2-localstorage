@@ -68,9 +68,9 @@ export function LocalStorage(storageKey?:string) {
         LocalStorageEmitter.subscribe(() => {
             for (let instance of instances) {
                 var currentValue = JSON.stringify(instance[decoratedPropertyName]);
-                var oldJSONValue = storageValueJSON[this['_' + decoratedPropertyName + '_mapped']];
+                var oldJSONValue = oldJSONValues[this['_' + decoratedPropertyName + '_mapped']];
                 if (currentValue !== oldJSONValue) {
-                    storageValueJSON[this['_' + decoratedPropertyName + '_mapped']] = currentValue;
+                    oldJSONValues[this['_' + decoratedPropertyName + '_mapped']] = currentValue;
                     localStorage.setItem(storageKey, currentValue);
                 }
             }
