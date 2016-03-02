@@ -3,10 +3,15 @@ import {NgZone} from 'angular2/src/core/zone';
 
 export class LocalStorageEmitter {
 
-    protected static subscribed = {};
+    protected static subscribed = [];
+    protected static ngZones:NgZone[] = [];
 
     public static register(ngZone:NgZone) {
-        LocalStorageEmitter.subscribed[ngZone] = ngZone.onTurnDone.subscribe(() => {
+        let index:number = LocalStorageEmitter.ngZones.indexOf(ngZone);
+        if (index === -1) {
+            index = LocalStorageEmitter.ngZones.push(ngZone) - 1;
+        }
+        LocalStorageEmitter.subscribed[index] = ngZone.onTurnDone.subscribe(() => {
             for (let callback of LocalStorageEmitter.subscribers) {
                 callback();
             }
@@ -20,7 +25,10 @@ export class LocalStorageEmitter {
     }
 
     public static unregister(ngZone:NgZone) {
-        LocalStorageEmitter.subscribed[ngZone].unsubscribe();
+        let index:number = LocalStorageEmitter.ngZones.indexOf(ngZone);
+        if (index >= 0) {
+            LocalStorageEmitter.subscribed[index].unsubscribe();
+        }
     }
 }
 
@@ -30,16 +38,18 @@ class LocalStorageService implements OnDestroy {
         LocalStorageEmitter.register(this.ngZone);
     }
 
-    ngOnDestroy(){
+    ngOnDestroy() {
         LocalStorageEmitter.unregister(this.ngZone);
     }
 }
 
 import {Type} from "angular2/src/facade/lang";
 import {provide} from 'angular2/src/core/di';
+import {ComponentRef} from 'angular2/core';
 
-export function LocalStorageSubscriber(appPromise:Promise) {
+export function LocalStorageSubscriber(appPromise:Promise<ComponentRef>) {
     appPromise.then((bla) => {
-        bla.injector.resolveAndInstantiate(<Type>LocalStorageService);
+        console.log('app booted', bla);
+        console.log(bla.injector.resolveAndInstantiate(<Type>LocalStorageService));
     });
 }
