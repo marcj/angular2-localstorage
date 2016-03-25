@@ -11,7 +11,7 @@ export class LocalStorageEmitter {
         if (index === -1) {
             index = LocalStorageEmitter.ngZones.push(ngZone) - 1;
         }
-        LocalStorageEmitter.subscribed[index] = ngZone.onTurnDone.subscribe(() => {
+        LocalStorageEmitter.subscribed[index] = ngZone.onMicrotaskEmpty.subscribe(() => {
             for (let callback of LocalStorageEmitter.subscribers) {
                 callback();
             }
