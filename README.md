@@ -44,7 +44,7 @@ class MySuperComponent {
     
     <input type="checkbox" [(ngModel)]="rememberMe" /> Keep me logged in
 
-    <button type="submit>Login</button
+    <button type="submit">Login</button>
 </form>
     `
 })
