@@ -1,7 +1,7 @@
 import {LocalStorageEmitter} from './LocalStorageEmitter';
 
 export function LocalStorage(storageKey?:string) {
-    return function decoratorFactory(target:Object, decoratedPropertyName?:string):void {
+    return (target:Object, decoratedPropertyName?:string):void => {
         if (!localStorage) {
             return;
         }
