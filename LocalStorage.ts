@@ -1,8 +1,21 @@
 import {LocalStorageEmitter} from './LocalStorageEmitter';
 
-export function LocalStorage(storageKey?:string) {
+interface IWebStorage{
+    getItem:(key:string) => string;
+    setItem:(key:string, value: string) => void;
+}
+
+export function LocalStorage(storageKey?: string){
+    return WebStorage(storageKey, localStorage);
+}
+
+export function SessionStorage(storageKey?: string){
+    return WebStorage(storageKey, sessionStorage);
+}
+
+function WebStorage(storageKey:string, webStorage: IWebStorage) {
     return (target:Object, decoratedPropertyName?:string):void => {
-        if (!localStorage) {
+        if (!webStorage) {
             return;
         }
 
@@ -20,7 +33,7 @@ export function LocalStorage(storageKey?:string) {
         var instances = [];
         var values = {};
 
-        var storageValue = localStorage.getItem(storageKey) || null;
+        var storageValue = webStorage.getItem(storageKey) || null;
         var storageValueJSON = storageValue;
         if ('string' === typeof storageValue) {
             try {
@@ -71,7 +84,7 @@ export function LocalStorage(storageKey?:string) {
                 var oldJSONValue = oldJSONValues[this['_' + decoratedPropertyName + '_mapped']];
                 if (currentValue !== oldJSONValue) {
                     oldJSONValues[this['_' + decoratedPropertyName + '_mapped']] = currentValue;
-                    localStorage.setItem(storageKey, currentValue);
+                    webStorage.setItem(storageKey, currentValue);
                 }
             }
         });
