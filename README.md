@@ -31,7 +31,7 @@ directive (class property) using HTML5' LocalStorage.
 
 3. Use the `LocalStorage` decorator
 ```typescript
-import {LocalStorage} from "angular2-localstorage/LocalStorage";
+import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 
 class MySuperComponent {
     @LocalStorage() public lastSearchQuery:Object = {};
