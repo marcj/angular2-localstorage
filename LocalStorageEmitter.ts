@@ -33,7 +33,7 @@ export class LocalStorageEmitter {
 }
 
 @Injectable()
-class LocalStorageService implements OnDestroy {
+export class LocalStorageService implements OnDestroy {
     constructor(private ngZone:NgZone) {
         LocalStorageEmitter.register(this.ngZone);
     }
