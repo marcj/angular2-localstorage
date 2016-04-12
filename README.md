@@ -7,16 +7,31 @@ directive (class property) using HTML5' LocalStorage.
 
 1. Download the library using npm or github: `npm install angular2-localstorage`
 2. Register the LocalStorage in your boot.ts:
-```typescript
-var appPromise = bootstrap(MyRootAppComponent);
+    ```typescript
+    var appPromise = bootstrap(MyRootAppComponent);
+    
+    // register LocalStorage, this registers our change-detection.
+    import {LocalStorageSubscriber} from 'angular2-localstorage/LocalStorageEmitter';
+    LocalStorageSubscriber(appPromise);
+    ```
+    or in your root component:
+    ```typescript
+    import {Component} from "angular2/core";
+    import {LocalStorageService} from "angular2-localstorage/LocalStorageEmitter";
 
-// register LocalStorage, this registers our change-detection.
-import {LocalStorageSubscriber} from 'angular2-localstorage/LocalStorageEmitter';
-LocalStorageSubscriber(appPromise);
-```
+    @Componenet({
+        provider: [LocalStorageService]
+    })
+    export class AppRoot{
+        constructor(storageService: LocalStorageService){}
+    ...
+    }
+    ```
+
+
 3. Use the `LocalStorage` decorator
 ```typescript
-import {LocalStorage} from "angular2-localstorage/LocalStorage";
+import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 
 class MySuperComponent {
     @LocalStorage() public lastSearchQuery:Object = {};
@@ -81,5 +96,8 @@ class AdminMenuComponent {
 
     //here happens the magic. `hiddenMenuItems` is always restored from the localStorage when you reload the site
     @LocalStorage() public hiddenMenuItems:Array<boolean> = [];
+    
+    //here happens the magic. `profile` is always restored from the sessionStorage when you reload the site from the current tab/browser. This is perfect for more sensitive information that shouldn't stay once the user closes the browser.
+    @SessionStorage() public profile:any = {};
 }
 ```
