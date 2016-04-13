@@ -4,6 +4,7 @@
   "description": "Angular2 decorator to save and restore class properties automatically from LocalStorage.",
   "main": "index.js",
   "scripts": {
+	"postinstall": "typings install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +20,13 @@
   "bugs": {
     "url": "https://github.com/marcj/angular2-localStorage/issues"
   },
-  "homepage": "https://github.com/marcj/angular2-localStorage"
+  "homepage": "https://github.com/marcj/angular2-localStorage",
+  "devDependencies": {
+    "angular2": "^2.0.0-beta.14",
+    "es6-shim": "^0.35.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
+    "typings": "^0.7.12",
+    "zone.js": "0.6.10"
+  }
 }

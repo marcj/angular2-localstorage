@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"inlineSources": true,
+		"sourceMap": true,
+		"module": "commonjs",
+		"target": "es5",
+		"outDir": "dist"
+	},
+	"exclude": [
+		"node_modules",
+		"typings/main",
+		"typings/main.d.ts"
+	]
+}
