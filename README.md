@@ -5,8 +5,8 @@ directive (class property) using HTML5' LocalStorage.
 
 ## Use
 
-1. Download the library using npm or github: `npm install angular2-localstorage`
-2. Register the LocalStorage in your boot.ts:
+1. Download the library using npm or github: `npm install --save angular2-localstorage`
+2. Register the LocalStorage in your `boot.ts`:
     ```typescript
     var appPromise = bootstrap(MyRootAppComponent);
     
@@ -19,7 +19,7 @@ directive (class property) using HTML5' LocalStorage.
     import {Component} from "angular2/core";
     import {LocalStorageService} from "angular2-localstorage/LocalStorageEmitter";
 
-    @Componenet({
+    @Component({
         provider: [LocalStorageService]
     })
     export class AppRoot{
