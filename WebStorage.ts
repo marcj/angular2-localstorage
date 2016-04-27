@@ -81,9 +81,9 @@ function WebStorage(storageKey:string, webStorage: IWebStorage) {
         LocalStorageEmitter.subscribe(() => {
             for (let instance of instances) {
                 var currentValue = JSON.stringify(instance[decoratedPropertyName]);
-                var oldJSONValue = oldJSONValues[this['_' + decoratedPropertyName + '_mapped']];
+                var oldJSONValue = oldJSONValues[instance['_' + decoratedPropertyName + '_mapped']];
                 if (currentValue !== oldJSONValue) {
-                    oldJSONValues[this['_' + decoratedPropertyName + '_mapped']] = currentValue;
+                    oldJSONValues[instance['_' + decoratedPropertyName + '_mapped']] = currentValue;
                     webStorage.setItem(storageKey, currentValue);
                 }
             }
