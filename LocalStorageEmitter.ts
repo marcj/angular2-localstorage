@@ -49,6 +49,6 @@ import {ComponentRef} from 'angular2/core';
 
 export function LocalStorageSubscriber(appPromise:Promise<ComponentRef>) {
     appPromise.then((bla) => {
-        bla.injector.resolveAndInstantiate(<Type>LocalStorageService);
+        bla.injector.get(<Type>LocalStorageService);
     });
 }
