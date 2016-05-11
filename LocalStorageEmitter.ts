@@ -1,6 +1,7 @@
 import {Injectable, OnDestroy} from 'angular2/core';
 import {NgZone} from 'angular2/src/core/zone';
 
+@Injectable()
 export class LocalStorageEmitter {
 
     protected static subscribed = [];
