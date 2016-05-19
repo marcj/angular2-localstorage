@@ -1,4 +1,4 @@
-import {Inject, Injectable, OnDestroy} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {NgZone} from '@angular/core';
 
 export class LocalStorageEmitter {
