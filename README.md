@@ -8,10 +8,10 @@ directive (class property) using HTML5' LocalStorage.
 1. Download the library using npm or github: `npm install --save angular2-localstorage`
 2. Register the LocalStorage in your `boot.ts`:
     ```typescript
-    var appPromise = bootstrap(MyRootAppComponent);
+    import {LocalStorageService, LocalStorageSubscriber} from 'angular2-localstorage/LocalStorageEmitter';
+    var appPromise = bootstrap(MyRootAppComponent, [ LocalStorageService ]);
     
     // register LocalStorage, this registers our change-detection.
-    import {LocalStorageSubscriber} from 'angular2-localstorage/LocalStorageEmitter';
     LocalStorageSubscriber(appPromise);
     ```
     or in your root component:
