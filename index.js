@@ -1,2 +1,2 @@
-export * from './LocalStorage';
+export * from './WebStorage';
 export * from './LocalStorageEmitter';
