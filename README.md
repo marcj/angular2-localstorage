@@ -41,7 +41,7 @@ class MySuperComponent {
 
 **Note**: Define always a default value at the property you are using `@LocalStorage`.
 
-**Note**: The localStorage key is per default the property name. Define the first argument of `@LocalStorage` to set different one.
+**Note**: The localstorage key is per default the property name. Define the first argument of `@LocalStorage` to set different one.
 
 **Note**: Please don't store circular structures as this library uses JSON.stringify to encode before using LocalStorage.
 
@@ -64,12 +64,12 @@ class MySuperComponent {
     `
 })
 class AppLoginComponent {
-    //here happens the magic. `username` is always restored from the localStorage when you reload the site
+    //here happens the magic. `username` is always restored from the localstorage when you reload the site
     @LocalStorage() public username:string = '';
     
     public password:string;
     
-    //here happens the magic. `rememberMe` is always restored from the localStorage when you reload the site
+    //here happens the magic. `rememberMe` is always restored from the localstorage when you reload the site
     @LocalStorage() public rememberMe:boolean = false;
 }
 ```
@@ -94,7 +94,7 @@ class AppLoginComponent {
 class AdminMenuComponent {
     public menuItems = [{title: 'Menu1'}, {title: 'Menu2'}, {title: 'Menu3'}];
 
-    //here happens the magic. `hiddenMenuItems` is always restored from the localStorage when you reload the site
+    //here happens the magic. `hiddenMenuItems` is always restored from the localstorage when you reload the site
     @LocalStorage() public hiddenMenuItems:Array<boolean> = [];
     
     //here happens the magic. `profile` is always restored from the sessionStorage when you reload the site from the current tab/browser. This is perfect for more sensitive information that shouldn't stay once the user closes the browser.
