@@ -3,7 +3,7 @@ import {NgZone} from '@angular/core';
 
 export class LocalStorageEmitter {
 
-    protected static subscribed = [];
+    protected static subscribed:any = [];
     protected static ngZones:NgZone[] = [];
 
     public static register(ngZone:NgZone) {
@@ -18,7 +18,7 @@ export class LocalStorageEmitter {
         });
     }
 
-    protected static subscribers = [];
+    protected static subscribers:any = [];
 
     public static subscribe(callback:Function) {
         LocalStorageEmitter.subscribers.push(callback);
