@@ -30,7 +30,7 @@ function WebStorage(storageKey:string, webStorage: IWebStorage) {
             value: false
         });
 
-        var instances = [];
+        var instances:any = [];
         var values = {};
 
         var storageValue = webStorage.getItem(storageKey) || null;
