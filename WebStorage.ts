@@ -1,78 +1,78 @@
-import {LocalStorageEmitter} from './LocalStorageEmitter';
+import {LocalStorageEmitter} from "./LocalStorageEmitter";
 
-interface IWebStorage{
-    getItem:(key:string) => string;
-    setItem:(key:string, value: string) => void;
+interface IWebStorage {
+    getItem: (key: string) => string;
+    setItem: (key: string, value: string) => void;
 }
 
-export function LocalStorage(storageKey?: string){
+export function LocalStorage(storageKey?: string) {
     return WebStorage(storageKey, localStorage);
 }
 
-export function SessionStorage(storageKey?: string){
+export function SessionStorage(storageKey?: string) {
     return WebStorage(storageKey, sessionStorage);
 }
 
-function WebStorage(storageKey:string, webStorage: IWebStorage) {
-    return (target:Object, decoratedPropertyName?:string):void => {
+function WebStorage(storageKey: string, webStorage: IWebStorage) {
+    return (target: Object, decoratedPropertyName?: string): void => {
         if (!webStorage) {
             return;
         }
 
         if (!storageKey) {
-            storageKey = '' + '/' + decoratedPropertyName;
+            storageKey = "" + "/" + decoratedPropertyName;
         }
 
-        Object.defineProperty(target, '_' + decoratedPropertyName + '_mapped', {
+        Object.defineProperty(target, "_" + decoratedPropertyName + "_mapped", {
             enumerable: false,
             configurable: true,
             writable: true,
             value: false
         });
 
-        var instances:any = [];
-        var values = {};
+        let instances: any = [];
+        let values = {};
 
-        var storageValue = webStorage.getItem(storageKey) || null;
-        var storageValueJSON = storageValue;
-        if ('string' === typeof storageValue) {
+        let storageValue = webStorage.getItem(storageKey) || null;
+        let storageValueJSON = storageValue;
+        if ("string" === typeof storageValue) {
             try {
                 storageValue = JSON.parse(storageValue);
-            } catch(e) {
+            } catch (e) {
                 storageValue = null;
-                storageValueJSON = 'null';
+                storageValueJSON = "null";
             }
         }
-        var oldJSONValues = {};
+        let oldJSONValues = {};
 
         Object.defineProperty(target, decoratedPropertyName, {
             get: function () {
-                if (false === this['_' + decoratedPropertyName + '_mapped']) {
-                    this['_' + decoratedPropertyName + '_mapped'] = instances.length;
+                if (false === this["_" + decoratedPropertyName + "_mapped"]) {
+                    this["_" + decoratedPropertyName + "_mapped"] = instances.length;
 
-                    //first registration triggers a setting to localStorage value
+                    // first registration triggers a setting to localStorage value
                     values[instances.length] = storageValue;
                     oldJSONValues[instances.length] = storageValueJSON;
 
                     instances.push(this);
                 }
-                return values[this['_' + decoratedPropertyName + '_mapped']];
+                return values[this["_" + decoratedPropertyName + "_mapped"]];
             },
             set: function (newValue) {
-                if (false === this['_' + decoratedPropertyName + '_mapped']) {
-                    this['_' + decoratedPropertyName + '_mapped'] = instances.length;
+                if (false === this["_" + decoratedPropertyName + "_mapped"]) {
+                    this["_" + decoratedPropertyName + "_mapped"] = instances.length;
 
-                    //first registration triggers a setting to localStorage value
+                    // first registration triggers a setting to localStorage value
                     values[instances.length] = storageValue;
                     oldJSONValues[instances.length] = storageValueJSON;
 
                     instances.push(this);
-                    //first 'set' call is ignored if we have already a value from the localStorage
+                    // first "set" call is ignored if we have already a value from the localStorage
                     if (storageValue) {
                         return;
                     }
                 }
-                values[this['_' + decoratedPropertyName + '_mapped']] = newValue;
+                values[this["_" + decoratedPropertyName + "_mapped"]] = newValue;
             },
             enumerable: true,
             configurable: true
@@ -80,13 +80,13 @@ function WebStorage(storageKey:string, webStorage: IWebStorage) {
 
         LocalStorageEmitter.subscribe(() => {
             for (let instance of instances) {
-                var currentValue = JSON.stringify(instance[decoratedPropertyName]);
-                var oldJSONValue = oldJSONValues[instance['_' + decoratedPropertyName + '_mapped']];
+                let currentValue = JSON.stringify(instance[decoratedPropertyName]);
+                let oldJSONValue = oldJSONValues[instance["_" + decoratedPropertyName + "_mapped"]];
                 if (currentValue !== oldJSONValue) {
-                    oldJSONValues[instance['_' + decoratedPropertyName + '_mapped']] = currentValue;
+                    oldJSONValues[instance["_" + decoratedPropertyName + "_mapped"]] = currentValue;
                     webStorage.setItem(storageKey, currentValue);
                 }
             }
         });
-    }
+    };
 }
