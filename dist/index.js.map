@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../index.ts"],"names":[],"mappings":";;;;AAAA,iBAAc,cAAc,CAAC,EAAA;AAC7B,iBAAc,uBAAuB,CAAC,EAAA","sourcesContent":["export * from \"./WebStorage\";\nexport * from \"./LocalStorageEmitter\";\n"]}
