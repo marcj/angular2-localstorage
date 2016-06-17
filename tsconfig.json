@@ -6,11 +6,13 @@
 		"sourceMap": true,
 		"module": "commonjs",
 		"target": "es5",
-		"outDir": "dist"
+		"outDir": "dist",
+		"declaration": true
 	},
 	"exclude": [
 		"node_modules",
 		"typings/main",
-		"typings/main.d.ts"
+		"typings/main.d.ts",
+		"dist"
 	]
 }
