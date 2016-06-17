@@ -1,20 +1,38 @@
 "use strict";
 var LocalStorageEmitter_1 = require("./LocalStorageEmitter");
-function LocalStorage(storageKey) {
-    return WebStorage(storageKey, localStorage);
+function LocalStorage(storageKeyOrOptions) {
+    if (storageKeyOrOptions === void 0) { storageKeyOrOptions = {}; }
+    if ("string" === typeof storageKeyOrOptions) {
+        return WebStorage(localStorage, { storageKey: storageKeyOrOptions });
+    }
+    else {
+        return WebStorage(localStorage, storageKeyOrOptions);
+    }
 }
 exports.LocalStorage = LocalStorage;
-function SessionStorage(storageKey) {
-    return WebStorage(storageKey, sessionStorage);
+function SessionStorage(storageKeyOrOptions) {
+    if (storageKeyOrOptions === void 0) { storageKeyOrOptions = {}; }
+    if ("string" === typeof storageKeyOrOptions) {
+        return WebStorage(sessionStorage, { storageKey: storageKeyOrOptions });
+    }
+    else {
+        return WebStorage(sessionStorage, storageKeyOrOptions);
+    }
 }
 exports.SessionStorage = SessionStorage;
-function WebStorage(storageKey, webStorage) {
+function WebStorage(webStorage, options) {
     return function (target, decoratedPropertyName) {
         if (!webStorage) {
             return;
         }
-        if (!storageKey) {
-            storageKey = "" + "/" + decoratedPropertyName;
+        if (!options.storageKey) {
+            options.storageKey = "" + "/" + decoratedPropertyName;
+        }
+        if (!options.serialize) {
+            options.serialize = JSON.stringify;
+        }
+        if (!options.deserialize) {
+            options.deserialize = JSON.parse;
         }
         Object.defineProperty(target, "_" + decoratedPropertyName + "_mapped", {
             enumerable: false,
@@ -24,11 +42,11 @@ function WebStorage(storageKey, webStorage) {
         });
         var instances = [];
         var values = {};
-        var storageValue = webStorage.getItem(storageKey) || null;
+        var storageValue = webStorage.getItem(options.storageKey) || null;
         var storageValueJSON = storageValue;
         if ("string" === typeof storageValue) {
             try {
-                storageValue = JSON.parse(storageValue);
+                storageValue = options.deserialize(storageValue);
             }
             catch (e) {
                 storageValue = null;
@@ -67,11 +85,11 @@ function WebStorage(storageKey, webStorage) {
         LocalStorageEmitter_1.LocalStorageEmitter.subscribe(function () {
             for (var _i = 0, instances_1 = instances; _i < instances_1.length; _i++) {
                 var instance = instances_1[_i];
-                var currentValue = JSON.stringify(instance[decoratedPropertyName]);
+                var currentValue = options.serialize(instance[decoratedPropertyName]);
                 var oldJSONValue = oldJSONValues[instance["_" + decoratedPropertyName + "_mapped"]];
                 if (currentValue !== oldJSONValue) {
                     oldJSONValues[instance["_" + decoratedPropertyName + "_mapped"]] = currentValue;
-                    webStorage.setItem(storageKey, currentValue);
+                    webStorage.setItem(options.storageKey, currentValue);
                 }
             }
         });
