@@ -6,7 +6,7 @@ interface IWebStorage {
 }
 
 export interface WebStorageOptions {
-    storageKey?: string;
+    storageKey?: string; 
     serialize?:  (deserialized: any) => string;
     deserialize?: (serialized: string) => any;
 }
