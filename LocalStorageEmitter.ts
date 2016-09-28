@@ -1,5 +1,4 @@
-import {Injectable, OnDestroy} from "@angular/core";
-import {NgZone} from "@angular/core";
+import {Type, Injectable, OnDestroy, NgZone, NgModuleRef} from "@angular/core";
 
 export class LocalStorageEmitter {
 
@@ -43,10 +42,7 @@ export class LocalStorageService implements OnDestroy {
     }
 }
 
-import {Type} from "@angular/core";
-import {ComponentRef} from "@angular/core";
-
-export function LocalStorageSubscriber(appPromise: Promise<ComponentRef<any>>) {
+export function LocalStorageSubscriber(appPromise: Promise<NgModuleRef<any>>) {
     appPromise.then((bla) => {
         bla.injector.get(<Type<any>>LocalStorageService);
     });

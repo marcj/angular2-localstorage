@@ -1,3 +1,4 @@
+/// <reference types="core-js" />
 export interface WebStorageOptions {
     storageKey?: string;
     serialize?: (deserialized: any) => string;

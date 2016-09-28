@@ -1,5 +1,5 @@
-import { OnDestroy } from "@angular/core";
-import { NgZone } from "@angular/core";
+/// <reference types="core-js" />
+import { OnDestroy, NgZone, NgModuleRef } from "@angular/core";
 export declare class LocalStorageEmitter {
     protected static subscribed: any;
     protected static ngZones: NgZone[];
@@ -13,5 +13,4 @@ export declare class LocalStorageService implements OnDestroy {
     constructor(ngZone: NgZone);
     ngOnDestroy(): void;
 }
-import { ComponentRef } from "@angular/core";
-export declare function LocalStorageSubscriber(appPromise: Promise<ComponentRef<any>>): void;
+export declare function LocalStorageSubscriber(appPromise: Promise<NgModuleRef<any>>): void;

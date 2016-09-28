@@ -55,7 +55,7 @@ function WebStorage(webStorage: IWebStorage, options: WebStorageOptions) {
         });
 
         let instances: any = [];
-        let values = {};
+        let values: any = {};
 
         let storageValue = webStorage.getItem(options.storageKey) || null;
         let storageValueJSON = storageValue;
@@ -67,7 +67,7 @@ function WebStorage(webStorage: IWebStorage, options: WebStorageOptions) {
                 storageValueJSON = "null";
             }
         }
-        let oldJSONValues = {};
+        let oldJSONValues: any = {};
 
         Object.defineProperty(target, decoratedPropertyName, {
             get: function () {
