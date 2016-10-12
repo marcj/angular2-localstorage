@@ -9,5 +9,10 @@
 		"inlineSources": true,
 		"outDir": "dist",
 		"declaration": true
-	}
+	},
+	"exclude": [
+		"node_modules",
+		"index.d.ts",
+		"dist"
+	]
 }
