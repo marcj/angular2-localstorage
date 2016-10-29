@@ -13,19 +13,19 @@ function __export(m) {
 }
 var core_1 = require("@angular/core");
 var webstorage_service_1 = require("./service/webstorage.service");
-__export(require('./decorator/index'));
-__export(require('./service/index'));
-__export(require('./utility/index'));
+__export(require("./decorator/index"));
+__export(require("./service/index"));
+__export(require("./utility/index"));
 var WebStorageModule = (function () {
     function WebStorageModule() {
     }
-    WebStorageModule = __decorate([
-        core_1.NgModule({
-            providers: [webstorage_service_1.LocalStorageService, webstorage_service_1.SessionStorageService]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], WebStorageModule);
     return WebStorageModule;
 }());
+WebStorageModule = __decorate([
+    core_1.NgModule({
+        providers: [webstorage_service_1.LocalStorageService, webstorage_service_1.SessionStorageService]
+    }),
+    __metadata("design:paramtypes", [])
+], WebStorageModule);
 exports.WebStorageModule = WebStorageModule;
 //# sourceMappingURL=index.js.map
