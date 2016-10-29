@@ -1,4 +1,4 @@
-export declare class WebStroageService {
+export declare class WebStorageService {
     private storage;
     constructor(storage: Storage);
     get(key: string): any;
@@ -6,9 +6,9 @@ export declare class WebStroageService {
     remove(key: string): void;
     clear(): void;
 }
-export declare class LocalStorageService extends WebStroageService {
+export declare class LocalStorageService extends WebStorageService {
     constructor();
 }
-export declare class SessionStorageService extends WebStroageService {
+export declare class SessionStorageService extends WebStorageService {
     constructor();
 }

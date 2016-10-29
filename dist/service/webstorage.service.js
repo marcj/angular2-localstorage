@@ -15,47 +15,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var webstorage_utiltiy_1 = require("../utility/webstorage.utiltiy");
-var WebStroageService = (function () {
-    function WebStroageService(storage) {
+var WebStorageService = (function () {
+    function WebStorageService(storage) {
         this.storage = storage;
     }
-    WebStroageService.prototype.get = function (key) {
+    WebStorageService.prototype.get = function (key) {
         return webstorage_utiltiy_1.WebStorageUtility.get(this.storage, key);
     };
-    WebStroageService.prototype.set = function (key, value) {
+    WebStorageService.prototype.set = function (key, value) {
         webstorage_utiltiy_1.WebStorageUtility.set(this.storage, key, value);
     };
-    WebStroageService.prototype.remove = function (key) {
+    WebStorageService.prototype.remove = function (key) {
         webstorage_utiltiy_1.WebStorageUtility.remove(this.storage, key);
     };
-    WebStroageService.prototype.clear = function () {
+    WebStorageService.prototype.clear = function () {
         this.storage.clear();
     };
-    return WebStroageService;
+    return WebStorageService;
 }());
-exports.WebStroageService = WebStroageService;
+exports.WebStorageService = WebStorageService;
 var LocalStorageService = (function (_super) {
     __extends(LocalStorageService, _super);
     function LocalStorageService() {
-        _super.call(this, localStorage);
+        return _super.call(this, localStorage) || this;
     }
-    LocalStorageService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], LocalStorageService);
     return LocalStorageService;
-}(WebStroageService));
+}(WebStorageService));
+LocalStorageService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], LocalStorageService);
 exports.LocalStorageService = LocalStorageService;
 var SessionStorageService = (function (_super) {
     __extends(SessionStorageService, _super);
     function SessionStorageService() {
-        _super.call(this, sessionStorage);
+        return _super.call(this, sessionStorage) || this;
     }
-    SessionStorageService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], SessionStorageService);
     return SessionStorageService;
-}(WebStroageService));
+}(WebStorageService));
+SessionStorageService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], SessionStorageService);
 exports.SessionStorageService = SessionStorageService;
 //# sourceMappingURL=webstorage.service.js.map

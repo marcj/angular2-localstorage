@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {WebStorageUtility} from "../utility/webstorage.utiltiy";
 
-export class WebStroageService {
+export class WebStorageService {
     constructor(private storage: Storage) {
 
     }
@@ -24,14 +24,14 @@ export class WebStroageService {
 }
 
 @Injectable()
-export class LocalStorageService extends WebStroageService {
+export class LocalStorageService extends WebStorageService {
     constructor() {
         super(localStorage);
     }
 }
 
 @Injectable()
-export class SessionStorageService extends WebStroageService {
+export class SessionStorageService extends WebStorageService {
     constructor() {
         super(sessionStorage);
     }
