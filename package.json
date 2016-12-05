@@ -4,9 +4,9 @@
   "description": "Angular2 decorator to save and restore class properties automatically from LocalStorage.",
   "main": "index.js",
   "scripts": {
-    "lint": "./node_modules/.bin/tslint ./*.ts -t verbose",
-    "tsc": "./node_modules/.bin/tsc",
-    "postinstall": "./node_modules/.bin/typings install",
+    "lint": "tslint ./*.ts -t verbose",
+    "tsc": "tsc",
+    "postinstall": "typings install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
