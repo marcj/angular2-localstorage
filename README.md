@@ -24,7 +24,7 @@ This project is not maintained. Please consider taking it over. More information
     import {LocalStorageService} from "angular2-localstorage/LocalStorageEmitter";
 
     @Component({
-        provider: [LocalStorageService]
+        providers: [LocalStorageService]
     })
     export class AppRoot{
         constructor(storageService: LocalStorageService){}
