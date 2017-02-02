@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/decorator/index.ts"],"names":[],"mappings":";;;;AAAA,kCAA6B","sourcesContent":["export * from './webstorage';"]}

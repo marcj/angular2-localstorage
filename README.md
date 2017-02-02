@@ -10,26 +10,17 @@ This project is not maintained. Please consider taking it over. More information
 ## Use
 
 1. Download the library using npm or github: `npm install --save angular2-localstorage`
-2. Register the LocalStorage in your `boot.ts`:
-    ```typescript
-    import {LocalStorageService, LocalStorageSubscriber} from 'angular2-localstorage/LocalStorageEmitter';
-    var appPromise = bootstrap(MyRootAppComponent, [ LocalStorageService ]);
-    
-    // register LocalStorage, this registers our change-detection.
-    LocalStorageSubscriber(appPromise);
-    ```
-    or in your root component:
+2. Import the WebStorageModule in your app module:
     ```typescript
     import {Component} from "angular2/core";
-    import {LocalStorageService} from "angular2-localstorage/LocalStorageEmitter";
+    import {WebStorageModule, LocalStorageService} from "angular2-localstorage";
 
+    @NgModule({
+        import: [WebStorageModule]
     @Component({
         providers: [LocalStorageService]
     })
-    export class AppRoot{
-        constructor(storageService: LocalStorageService){}
-    ...
-    }
+    export class AppModule {}
     ```
 
 
