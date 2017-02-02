@@ -17,6 +17,7 @@ This project is not maintained. Please consider taking it over. More information
 
     @NgModule({
         import: [WebStorageModule]
+    @Component({
         providers: [LocalStorageService]
     })
     export class AppModule {}
