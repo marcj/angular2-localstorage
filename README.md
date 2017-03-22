@@ -16,8 +16,7 @@ This project is not maintained. Please consider taking it over. More information
     import {WebStorageModule, LocalStorageService} from "angular2-localstorage";
 
     @NgModule({
-        import: [WebStorageModule]
-    @Component({
+        imports: [WebStorageModule],
         providers: [LocalStorageService]
     })
     export class AppModule {}
