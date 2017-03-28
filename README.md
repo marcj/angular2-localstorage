@@ -3,9 +3,7 @@
 This little Angular/typescript decorator makes it super easy to save and restore *automatically* a variable state in your
 directive (class property) using HTML5' LocalStorage.
 
-## Seeking new maintainer
-
-This project is not maintained. Please consider taking it over. More information at https://github.com/open-source-chest/take-it-over.
+Compatible with angular 4.0.0.
 
 ## Use
 
