@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var webstorage_utiltiy_1 = require("../utility/webstorage.utiltiy");
 function LocalStorage(key) {
     return exports.WebStorage(localStorage, key);
@@ -8,6 +9,7 @@ function SessionStorage(key) {
     return exports.WebStorage(sessionStorage, key);
 }
 exports.SessionStorage = SessionStorage;
+// initialization cache
 var cache = {};
 exports.WebStorage = function (webStorage, key) {
     return function (target, propertyName) {
@@ -20,7 +22,9 @@ exports.WebStorage = function (webStorage, key) {
             },
             set: function (value) {
                 if (!cache[key]) {
+                    // first setter handle
                     if (storedValue === null) {
+                        // if no value in localStorage, set it to initializer
                         webstorage_utiltiy_1.WebStorageUtility.set(webStorage, key, value);
                     }
                     cache[key] = true;
