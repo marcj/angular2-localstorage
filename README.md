@@ -3,9 +3,10 @@
 This little Angular2/typescript decorator makes it super easy to save and restore *automatically* a variable state in your
 directive (class property) using HTML5' LocalStorage.
 
-## Seeking new maintainer
+# No longer maintained
 
-This project is not maintained. Please consider taking it over. More information at https://github.com/open-source-chest/take-it-over.
+**This project is no longer maintained. Instead you can use (or migrate to) [`ngx-store`](https://github.com/zoomsphere/ngx-store)**, which is a compatible extension of this library, in addition providing data change observers, more configuration options and API based on builder pattern. 
+You can also consider taking it over: more information at [open-source-chest/take-it-over](https://github.com/open-source-chest/take-it-over).
 
 ## Use
 
