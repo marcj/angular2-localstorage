@@ -6,6 +6,7 @@ directive (class property) using HTML5' LocalStorage.
 ## Seeking new maintainer
 
 This project is not maintained. Please consider taking it over. More information at https://github.com/open-source-chest/take-it-over.
+If you are looking for an alternativ right now, look at https://github.com/zoomsphere/ngx-store/.
 
 ## Use
 
